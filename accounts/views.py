@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
@@ -15,3 +15,8 @@ def user_login(request):
             return HttpResponse("user not found")
     else:
         return render(request, "accounts/login.html")
+
+
+def user_logout(request):
+    logout(request)
+    return HttpResponse("logged out")

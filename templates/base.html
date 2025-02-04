@@ -6,7 +6,8 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-    <div>{{request.user}}</div>
+    <span>{{request.user}}</span>
+    <a href="{% url 'user_logout' %}" style="margin-left: 5px">logout</a>
     <hr>
     {% block main %}
     {% endblock main %}
