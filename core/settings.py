@@ -31,13 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "accounts",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "accounts",
+    "cloud",
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
+LOGIN_URL = "accounts:user_login"
+LOGIN_REDIRECT_URL = "cloud:index"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

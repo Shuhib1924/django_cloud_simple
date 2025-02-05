@@ -7,7 +7,11 @@
 </head>
 <body>
     <span>{{request.user}}</span>
-    <a href="{% url 'user_logout' %}" style="margin-left: 5px">logout</a>
+    {% comment %} <a href="{% url 'accounts:user_logout' %}" style="margin-left: 12px">logout</a> {% endcomment %}
+    <form action="{% url 'accounts:user_logout' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">logout</button>
+    </form>
     <hr>
     {% block main %}
     {% endblock main %}
