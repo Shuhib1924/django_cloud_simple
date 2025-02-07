@@ -10,12 +10,14 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-    <span>{{request.user}}</span>
+   {% if request.user.is_authenticated %}
+    <a href="{% url 'accounts:profile' request.user.username %}" class="p-4 underline text-blue-950">{{request.user}}</a>
     {% comment %} <a href="{% url 'accounts:user_logout' %}" style="margin-left: 12px">logout</a> {% endcomment %}
     <form action="{% url 'accounts:user_logout' %}" method="POST">
         {% csrf_token %}
         <button type="submit">logout</button>
     </form>
+   {% endif %}
     <hr>
     {% block main %}
     {% endblock main %}
