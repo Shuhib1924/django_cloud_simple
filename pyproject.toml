@@ -7,6 +7,5 @@ requires-python = ">=3.13"
 dependencies = [
     "django>=5.1.5",
     "djlint>=1.36.4",
-    "easy-thumbnails>=2.10",
     "pillow>=11.1.0",
 ]

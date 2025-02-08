@@ -3,5 +3,7 @@
 {% block main %}
     <div>username: {{profile.username}}</div>
     <div>email: {{profile.email}}</div>
-    <div>image: <img src="{{profile.photo.url}}" alt="{{profile.photo}}"></div>
+    {% if profile.photo %}
+        <div>image: <img src="{{profile.photo.url}}" alt="{{profile.photo}}"></div>
+    {% endif %}
 {% endblock main %}
