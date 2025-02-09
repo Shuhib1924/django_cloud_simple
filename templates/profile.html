@@ -6,4 +6,10 @@
     {% if profile.photo %}
         <div>image: <img src="{{profile.photo.url}}" alt="{{profile.photo}}"></div>
     {% endif %}
+    <form action="{% url 'accounts:profile' user.username %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="date" name="date_of_birth" value="{{profile.date_of_birth|date:'Y-m-d'}}">
+        <input type="file" name="photo" accept="image/*">
+        <button type="submit">Update Profile</button>
+    </form>
 {% endblock main %}

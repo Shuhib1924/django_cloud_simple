@@ -48,8 +48,15 @@ def register(request):
 @login_required
 def profile(request, username):
     profile = get_object_or_404(Profile, user__username=username)
-    # if request.method == "POST":
-    #     data = request.POST
-    #     print("data", data)
-
-    return render(request, "profile.html", {"profile": profile})
+    # user = get_object_or_404(User, username=username)
+    if request.method == "POST":
+        # data = request.POST
+        # files = request.FILES
+        if "date_of_birth" in request.POST:
+            profile.date_of_birth = request.POST["date_of_birth"]
+        if "photo" in request.FILES:
+            profile.photo = request.FILES["photo"]
+        profile.save()
+        return redirect("accounts:profile", username=profile.user.username)
+    else:
+        return render(request, "profile.html", {"profile": profile})
