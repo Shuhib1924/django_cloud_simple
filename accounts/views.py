@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -44,6 +45,11 @@ def register(request):
     return render(request, "registration/register.html")
 
 
+@login_required
 def profile(request, username):
     profile = get_object_or_404(Profile, user__username=username)
+    # if request.method == "POST":
+    #     data = request.POST
+    #     print("data", data)
+
     return render(request, "profile.html", {"profile": profile})
