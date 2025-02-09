@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 {% block title %} profile: {{profile.username}} {% endblock title %}
 {% block main %}
-    <div>username: {{profile.username}}</div>
-    <div>email: {{profile.email}}</div>
+    {% if messages %}
+        {% for message in messages %}
+            <div x-init="setTimeout(() => { $el.classList.add('hidden'); console.log('hidden now') }, 2000)">{{message}}</div>
+        {% endfor %}
+    {% endif %}
+    <div>username: {{profile.user.username}}</div>
+    <div>email: {{profile.user.email}}</div>
     {% if profile.photo %}
         <div>image: <img src="{{profile.photo.url}}" alt="{{profile.photo}}"></div>
     {% endif %}

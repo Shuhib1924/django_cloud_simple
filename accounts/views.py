@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -54,8 +55,12 @@ def profile(request):
         # files = request.FILES
         if "date_of_birth" in request.POST:
             profile.date_of_birth = request.POST["date_of_birth"]
+            messages.success(request, "date of birth updated")
         if "photo" in request.FILES:
             profile.photo = request.FILES["photo"]
+            messages.success(request, "photo updated")
+        if request.POST["date_of_birth"] == "" and request.FILES["photo"] == "":
+            messages.error(request, "nothing to update")
         profile.save()
         # return redirect("accounts:profile", username=profile.user.username)
         return redirect("accounts:profile")
